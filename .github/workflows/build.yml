@@ -4,11 +4,19 @@ on:
   push:
     branches:
       - 'master'
+  schedule:
+    - cron: '0 0 * * 0'
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - id: spotifyd
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          owner: Spotifyd
+          repo: spotifyd
+          excludes: prerelease, draft
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -27,4 +35,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ github.repository_owner }}/spotifyd:latest
+          tags: ${{ github.repository_owner }}/spotifyd:latest, ${{ github.repository_owner }}/spotifyd:${{ steps.spotifyd.outputs.release }}
+          build-args: SPOTIFYD_VERSION=${{ steps.spotifyd.outputs.release }}
