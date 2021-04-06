@@ -1,6 +1,6 @@
 # Spotifyd Docker
 ![Build status](https://github.com/zewelor/spotifyd-docker/workflows/Build/badge.svg)
-[![Download](https://img.shields.io/docker/pulls/zewelor/spotifyd.svg?style=for-the-badge)](https://hub.docker.com/r/joonas/spotifyd/)
+[![Download](https://img.shields.io/docker/pulls/zewelor/spotifyd.svg?style=for-the-badge)](https://hub.docker.com/r/zewelor/spotifyd)
 
 Dockerized version of great [Spotifyd](https://github.com/Spotifyd/spotifyd). Setup inspired by [Hassio addon](https://github.com/hassio-addons/addon-spotify-connect) and [spotify-docker](https://github.com/joonas-fi/spotifyd-docker/workflows/Build/badge.svg).
 
