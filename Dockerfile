@@ -1,15 +1,13 @@
-ARG BUILD_FROM=ubuntu:latest
+ARG BUILD_FROM=ubuntu:21.10
 FROM ${BUILD_FROM}
 
-ARG SPOTIFYD_VERSION=v0.3.2
+ARG SPOTIFYD_VERSION=v0.3.3
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Setup base
-RUN \
-    apt-get update \
-    \
+RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         build-essential \
         ca-certificates \
@@ -27,22 +25,20 @@ RUN \
         https://github.com/Spotifyd/spotifyd.git /tmp/spotifyd \
     \
     && cd /tmp/spotifyd \
-    && cargo build --release \
-    && mv /tmp/spotifyd/target/release/spotifyd /usr/bin \
-    \
-    && apt-get purge -y --auto-remove \
-        build-essential \
-        cargo \
-        git \
-        libasound2-dev \
-        libssl-dev \
-        pkg-config \
-        rustc \
-    \
+    && cargo build --release
+
+ENTRYPOINT ["/usr/bin/spotifyd", "--no-daemon"]
+
+FROM ${BUILD_FROM}
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        dumb-init \
     && rm -fr \
-        /tmp/* \
-        /root/.cargo \
         /var/{cache,log}/* \
         /var/lib/apt/lists/*
 
-ENTRYPOINT ["/usr/bin/spotifyd", "--no-daemon"]
+COPY --from=0 /tmp/spotifyd/target/release/spotifyd /usr/bin
+
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["/usr/bin/spotifyd", "--no-daemon"]
