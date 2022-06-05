@@ -3,6 +3,8 @@ FROM ${BUILD_FROM}
 
 ARG SPOTIFYD_VERSION=v0.3.3
 
+ENV CARGO_NET_GIT_FETCH_WITH_CLI="true"
+
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
