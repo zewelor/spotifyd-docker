@@ -1,6 +1,5 @@
 # Spotifyd Docker
 ![Build status](https://github.com/zewelor/spotifyd-docker/workflows/Build/badge.svg)
-[![Download](https://img.shields.io/docker/pulls/zewelor/spotifyd.svg?style=for-the-badge)](https://hub.docker.com/r/zewelor/spotifyd)
 
 Dockerized version of great [Spotifyd](https://github.com/Spotifyd/spotifyd). Setup inspired by [Hassio addon](https://github.com/hassio-addons/addon-spotify-connect) and [spotify-docker](https://github.com/joonas-fi/spotifyd-docker).
 
@@ -9,7 +8,7 @@ Comparing to [spotify-docker](https://github.com/joonas-fi/spotifyd-docker) it u
 
 I'm using it to use my headless server as spotify client, whole setup is dockerized thats why dockerized spotify client also.
 
-To see available image versions check [Dockerhub](https://hub.docker.com/r/zewelor/spotifyd) page. Github action is configured to autobuild newest spotifyd version.
+To see available image versions check [Github packages](https://github.com/users/zewelor/packages/container/package/spotifyd) page. Github action is configured to autobuild newest spotifyd version.
 
 ## How to run
 
