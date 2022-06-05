@@ -3,6 +3,8 @@ FROM ${BUILD_FROM}
 
 ARG SPOTIFYD_VERSION=v0.3.3
 
+LABEL org.opencontainers.image.source https://github.com/zewelor/spotifyd-docker
+
 # Fix problem with cargo who breaks the GitHub Actions CI/CD pipline
 # https://github.com/rust-lang/cargo/issues/9187
 ENV CARGO_NET_GIT_FETCH_WITH_CLI=true
